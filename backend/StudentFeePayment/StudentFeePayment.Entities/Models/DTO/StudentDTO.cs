@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StudentFeePayment.Entities.Models.DTO
 {
-    public class StudentDTO
+    public class StudentDto
     {
         public int Id { get; set; }
 

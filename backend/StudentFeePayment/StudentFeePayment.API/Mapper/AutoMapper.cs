@@ -8,8 +8,8 @@ namespace StudentFeePayment.API.Mapper
     {
         public AutoMapper()
         {
-            CreateMap<StudentDTO, Student>();
-            CreateMap<Student, StudentDTO>();
+            CreateMap<StudentDto, Student>();
+            CreateMap<Student, StudentDto>();
         }
     }
 }

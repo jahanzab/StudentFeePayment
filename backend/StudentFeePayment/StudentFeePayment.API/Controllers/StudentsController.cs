@@ -12,13 +12,13 @@ namespace StudentFeePayment.API.Controllers
     [ApiController]
     public class StudentsController : ControllerBase
     {
-        private readonly IStudentRepository _studentRepository;
+        private IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
 
-        public StudentsController(IStudentRepository studentRepository, IMapper mapper)
+        public StudentsController(IRepositoryWrapper repository, IMapper mapper)
         {
-            this._studentRepository = studentRepository;
             this._mapper = mapper;
+            _repository = repository;
         }
 
 
@@ -26,20 +26,8 @@ namespace StudentFeePayment.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAlStudents()
         {
-            return Ok(await _studentRepository.GetAllAsync<StudentDTO>());
-        }
-
-        [EnableCors("DefaultPolicy")]
-        [HttpGet]
-        [Route("{id:Int}")]
-        public async Task<IActionResult> GetStudentById([FromRoute] int id)
-        {
-            var response = await _studentRepository.GetByIdAsync<StudentDTO>(id);
-
-            if (response == null)
-                return NotFound();
-
-            return Ok(response);
+            var studentsResult = _mapper.Map<IEnumerable<StudentDto>>(await _repository.Student.GetAllStudentsAsync());
+            return Ok(studentsResult);
         }
     }
 }

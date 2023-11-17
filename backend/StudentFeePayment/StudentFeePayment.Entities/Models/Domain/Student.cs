@@ -14,13 +14,13 @@ namespace StudentFeePayment.Entities.Models.Domain
         [Key]
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "FirstName is required.")]
         [MaxLength(50)]
-        [Required]
         public string FirstName { get; set; }
 
         [ConcurrencyCheck]
+        [Required(ErrorMessage = "LastName is required.")]
         [MaxLength(50)]
-        [Required]
         public string LastName { get; set; }
 
         [NotMapped]
@@ -31,15 +31,15 @@ namespace StudentFeePayment.Entities.Models.Domain
         public string Email { get; set; }
 
         [Phone]
+        [Required(ErrorMessage = "Phone number is required.")]
         [MaxLength(20)]
-        [Required]
         public string Phone { get; set; }
 
+        [Required(ErrorMessage = "Address is required.")]
         [MaxLength(200)]
-        [Required]
         public string Address { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Date of birth is required.")]
         [DataType(DataType.Date)]
         public DateTime DOB { get; set; }
 

@@ -43,12 +43,8 @@ namespace StudentFeePayment.API.Extensions
 
 
             //Add services
-            services.AddScoped<IDbContextRepository, DbContextRepository>();
-            services.AddScoped<IStudentRepository, StudentRepository>();
-            //services.AddScoped<IBlogPostsRepository, BlogPostsRepository>();
-            //services.AddScoped<IImageRepository, ImageRepository>();
-            //services.AddScoped<ITokenRepository, TokenRepository>();
-            //services.AddScoped<IUserResolveService, UserResolveService>();
+            services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
+
 
         }
     }
