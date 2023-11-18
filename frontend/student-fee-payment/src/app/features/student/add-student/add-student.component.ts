@@ -33,8 +33,13 @@ OnFormSubmit() {
     next: (res) =>{
       this.router.navigateByUrl('/students');
     },
-    error: (err)=>{
-      this.errors = err.error.errors;
+    error: (res)=>{
+      if(res.error.errors){
+        this.errors = res.error.errors;
+      }
+      else if(res.error){
+        this.errors = res.error;
+      }
     },
     complete: ()=>{
     }

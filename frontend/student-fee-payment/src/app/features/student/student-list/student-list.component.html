@@ -33,9 +33,9 @@
                                         <a data-bs-toggle="dropdown" href="#" class="btn p-1" aria-expanded="false">
                                   <i class="fa fa-bars" aria-hidden="true"></i>
                                 </a>
-                                        <div class="dropdown-menu dropdown-menu-end" style="">
+                                        <div class="dropdown-menu dropdown-menu-end">
                                             <a [routerLink]="['/students/', student.id]" class="dropdown-item">View Details</a>
-                                            <a [routerLink]="['/students/add']" class="dropdown-item">Delete user</a>
+                                            <a style="cursor: pointer;" (click)="onDelete(student.id)" class="dropdown-item">Delete</a>
                                         </div>
                                     </div>
                                 </td>

@@ -48,5 +48,15 @@ namespace StudentPayment.Repository
             Update(existingStudent);
             return existingStudent;
         }
+
+        public void DeleteStudent(int id)
+        {
+            Student entity = dbContext.Students
+               .First(b => b.Id == id);
+            Delete(entity);
+        }
+
+        public bool IsupdateOrCreate(string studentNumber) =>  dbContext.Students
+            .Any(b => b.StudentNumber.Trim() == studentNumber.Trim());        
     }
 }

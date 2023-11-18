@@ -34,7 +34,6 @@ throw new Error('Method not implemented.');
          if(this.id){
             this.studentService.getStudentById(this.id).subscribe({
               next: (res) =>{
-                console.log(res);
                 this.student = res;
               }
             });
@@ -66,7 +65,12 @@ throw new Error('Method not implemented.');
           this.router.navigateByUrl('/students')
         },
         error: (res) =>{
-          this.errors = res.error.errors;
+          if(res.error.errors){
+            this.errors = res.error.errors;
+          }
+          else if(res.error){
+            this.errors = res.error;
+          }
         }
       });
     }

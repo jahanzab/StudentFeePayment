@@ -22,7 +22,10 @@ namespace StudentFeePayment.API.Controllers
             _repository = repository;
         }
 
-
+        /// <summary>
+        /// Get List of all existing Students
+        /// </summary>
+        /// <returns></returns>
         [EnableCors("DefaultPolicy")]
         [HttpGet]
         public async Task<IActionResult> GetAlStudents()
@@ -31,6 +34,11 @@ namespace StudentFeePayment.API.Controllers
             return Ok(studentsResult);
         }
 
+        /// <summary>
+        /// Get a single Student on basis of id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [EnableCors("DefaultPolicy")]
         [HttpGet]
         [Route("{id:int}")]
@@ -44,20 +52,31 @@ namespace StudentFeePayment.API.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Edit a single Student entity on basis of id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="req"></param>
+        /// <returns></returns>
         [EnableCors("DefaultPolicy")]
         [HttpPut]
         [Route("{id:int}")]
         public async Task<IActionResult> EditStudent([FromRoute] int id, CreateUpdateStudentDto req)
         {
-            var student = _mapper.Map<Student>(req);
-            student.Id = id;
-
-            Student updatedStudent;
+            if (_repository.Student.IsupdateOrCreate(req.StudentNumber))
+            {
+                ModelState.AddModelError("StudentNumber", "Student Number must be unique for every student.");
+            }
 
             if (!ModelState.IsValid)
             {
                 return UnprocessableEntity(ModelState);
             }
+
+            var student = _mapper.Map<Student>(req);
+            student.Id = id;
+
+            Student updatedStudent;
 
             try
             {
@@ -78,16 +97,26 @@ namespace StudentFeePayment.API.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Create new Student entity
+        /// </summary>
+        /// <param name="req"></param>
+        /// <returns></returns>
         [EnableCors("DefaultPolicy")]
         [HttpPost]
         public async Task<IActionResult> CreateStudent(CreateUpdateStudentDto req)
         {
-            var student = _mapper.Map<Student>(req);
+            if(_repository.Student.IsupdateOrCreate(req.StudentNumber))
+            {
+                ModelState.AddModelError("StudentNumber", "Student Number must be unique for every student.");
+            }
 
             if (!ModelState.IsValid)
             {
                 return UnprocessableEntity(ModelState);
             }
+
+            var student = _mapper.Map<Student>(req);
 
             try
             {
@@ -106,6 +135,35 @@ namespace StudentFeePayment.API.Controllers
                 return NotFound();
 
             return Ok(response);
+        }
+
+        /// <summary>
+        /// Delete existing Student entity on basis of id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [EnableCors("DefaultPolicy")]
+        [HttpDelete]
+        [Route("{id:int}")]
+        public async Task<IActionResult> DeleteStudentById([FromRoute] int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return UnprocessableEntity(ModelState);
+            }
+
+            try
+            {
+                _repository.Student.DeleteStudent(id);
+                await _repository.SaveAsync();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+
+            }
+
+            return Ok();
         }
     }
 }

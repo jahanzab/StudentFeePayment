@@ -31,4 +31,8 @@ export class StudentService {
   addStudent(student:StudentCreateUpdate): Observable<StudentDetails> { 
     return this.http.post<StudentDetails>(`${this.apiUrl}`,student);
   }
+
+  deleteStudent(id:string): Observable<any> { 
+    return this.http.delete<any>(`${this.apiUrl}/${id}`);
+  }
 }
