@@ -11,6 +11,7 @@ import { EditStudentComponent } from './features/student/edit-student/edit-stude
 import { FormsModule } from '@angular/forms';
 import { SpinnerComponent } from './core/components/spinner/spinner.component';
 import { LoadingInterceptor } from './core/components/interceptors/loading';
+import { AddStudentComponent } from './features/student/add-student/add-student.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { LoadingInterceptor } from './core/components/interceptors/loading';
     HomeComponent,
     StudentListComponent,
     EditStudentComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    AddStudentComponent
   ],
   imports: [
     BrowserModule,

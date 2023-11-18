@@ -77,5 +77,35 @@ namespace StudentFeePayment.API.Controllers
 
             return Ok(response);
         }
+
+        [EnableCors("DefaultPolicy")]
+        [HttpPost]
+        public async Task<IActionResult> CreateStudent(CreateUpdateStudentDto req)
+        {
+            var student = _mapper.Map<Student>(req);
+
+            if (!ModelState.IsValid)
+            {
+                return UnprocessableEntity(ModelState);
+            }
+
+            try
+            {
+               _repository.Student.CreateStudent(student);
+                await _repository.SaveAsync();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+
+            }
+
+            var response = _mapper.Map<StudentDetailsDto>(student);
+
+            if (response == null)
+                return NotFound();
+
+            return Ok(response);
+        }
     }
 }

@@ -67,7 +67,6 @@ throw new Error('Method not implemented.');
         },
         error: (res) =>{
           this.errors = res.error.errors;
-          console.log(this.errors);
         }
       });
     }

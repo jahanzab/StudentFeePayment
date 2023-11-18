@@ -13,5 +13,6 @@ namespace StudentPayment.Contracts
        Task<IEnumerable<Student>> GetAllStudentsAsync();
        Task<Student> GetStudentByIdAsync(int id);
        Student UpdateStudentById(Student student);
+       void CreateStudent(Student student);  
     }
 }

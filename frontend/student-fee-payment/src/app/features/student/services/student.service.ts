@@ -27,4 +27,8 @@ export class StudentService {
   updateStudentById(id:string, student:StudentCreateUpdate): Observable<StudentDetails> { 
     return this.http.put<StudentDetails>(`${this.apiUrl}/${id}`,student);
   }
+
+  addStudent(student:StudentCreateUpdate): Observable<StudentDetails> { 
+    return this.http.post<StudentDetails>(`${this.apiUrl}`,student);
+  }
 }

@@ -20,6 +20,11 @@ namespace StudentPayment.Repository
             this.dbContext = dbContext;
         }
 
+        public void CreateStudent(Student student)
+        {
+            Create(student);
+        }
+
         public async Task<IEnumerable<Student>> GetAllStudentsAsync()
         {
             return await FindAll()
