@@ -1,0 +1,40 @@
+<nav class="navbar bg-dark navbar-expand-lg" data-bs-theme="dark">
+  <!-- "navbar bg-dark border-bottom border-body" data-bs-theme="dark" -->
+    <div class="container">
+      <a class="navbar-brand" [routerLink]="['/']">
+        <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/5p1Whh5sqh5fdgS9dhPC/media/64b4cdc36215818abdd3013b.png" alt="Logo" width="auto" height="24" class="d-inline-block"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" [routerLink]="['/']">Home</a>
+          </li>
+  
+          <!-- <ng-container *ngIf="user !== undefined && user?.roles?.includes('Writer')"> -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Menu
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" [routerLink]="['/students']">Students</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" [routerLink]="['/grades']">Grades</a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                  <li><a class="dropdown-item" [routerLink]="['/payments']">Payments</a></li>
+                <!-- <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+              </ul>
+            </li>
+          <!-- </ng-container> -->
+        </ul>
+      </div>
+    </div>
+  </nav>
