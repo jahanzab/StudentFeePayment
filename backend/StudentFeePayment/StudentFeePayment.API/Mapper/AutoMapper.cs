@@ -10,6 +10,12 @@ namespace StudentFeePayment.API.Mapper
         {
             CreateMap<StudentDto, Student>();
             CreateMap<Student, StudentDto>();
+
+            CreateMap<StudentDetailsDto, Student>();
+            CreateMap<Student, StudentDetailsDto>();
+
+            CreateMap<CreateUpdateStudentDto, Student>();
+            CreateMap<Student, CreateUpdateStudentDto>();
         }
     }
 }

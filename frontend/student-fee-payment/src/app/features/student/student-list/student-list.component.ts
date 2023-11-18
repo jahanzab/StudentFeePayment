@@ -16,12 +16,7 @@ export class StudentListComponent implements OnInit {
   students$?:Observable<Student[]>;
 
   ngOnInit(): void {
-    this.studentService.getAllStudents().subscribe({
-      next: (res)=>{
-        console.log(res);
-      }
-    });
-   // console.log(this.students$);
+    this.students$ =  this.studentService.getAllStudents();
   }
 
 }

@@ -12,9 +12,12 @@ namespace StudentPayment.Repository
 {
     public class StudentRepository : RepositoryBase<Student> ,IStudentRepository
     {
+        private readonly ApplicationDbContext dbContext;
+
         public StudentRepository(ApplicationDbContext dbContext)
             :base(dbContext)
         {
+            this.dbContext = dbContext;
         }
 
         public async Task<IEnumerable<Student>> GetAllStudentsAsync()
@@ -22,6 +25,23 @@ namespace StudentPayment.Repository
             return await FindAll()
                 .OrderBy(s => s.Id)
                 .ToListAsync();
+        }
+
+        public async Task<Student> GetStudentByIdAsync(int id)
+        {
+            return await FindByCondition(s => s.Id == id)
+                .SingleAsync();
+        }
+
+        public Student UpdateStudentById(Student student)
+        {
+            var existingStudent = dbContext.Students
+               .First(b => b.Id == student.Id);
+
+            dbContext.Entry(existingStudent).CurrentValues.SetValues(student);
+
+            Update(existingStudent);
+            return existingStudent;
         }
     }
 }

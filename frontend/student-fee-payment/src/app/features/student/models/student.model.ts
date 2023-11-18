@@ -1,10 +1,8 @@
 export interface Student {
-    Id : string
-    FirstName : string
-    LastName :string
-    FullName : string
-    Email : string
-    Phone : string
-    Address : string
-    DOB : Date
+    id : string
+    fullName : string
+    email : string
+    createdDate: Date
+    grade : string
+    studentNumber: string
 }

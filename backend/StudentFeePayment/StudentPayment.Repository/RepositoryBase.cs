@@ -21,6 +21,7 @@ namespace StudentPayment.Repository
         {
             this.applicationDbContext = applicationDbContext;
         }
+
         public IQueryable<T> FindAll() => applicationDbContext.Set<T>().AsNoTracking();
         public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression) =>
             applicationDbContext.Set<T>().Where(expression).AsNoTracking();

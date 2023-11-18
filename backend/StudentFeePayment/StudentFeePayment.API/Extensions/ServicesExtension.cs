@@ -26,7 +26,7 @@ namespace StudentFeePayment.API.Extensions
         public static void Configureservices(this IServiceCollection services, IConfiguration configuration)
         {
 
-            services.AddControllers();
+            services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes=true);
             services.AddHttpContextAccessor();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             services.AddEndpointsApiExplorer();

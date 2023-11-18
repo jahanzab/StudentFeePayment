@@ -22,15 +22,20 @@ namespace StudentFeePayment.Entities
 
             var allEntities = modelBuilder.Model.GetEntityTypes();
 
+            // Configure Shadow properties for each entity in the model
             foreach (var entity in allEntities)
             {
-                // Configure Shadow properties
                 entity.AddProperty("CreatedDate", typeof(DateTime));
                 entity.AddProperty("UpdatedDate", typeof(DateTime));
 
                 entity.AddProperty("CreatedBy", typeof(string));
                 entity.AddProperty("UpdatedBy", typeof(string));
             }
+
+            // Make student number unique for each student
+            modelBuilder.Entity<Student>()
+                .HasIndex(u => u.StudentNumber)
+                .IsUnique();
         }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

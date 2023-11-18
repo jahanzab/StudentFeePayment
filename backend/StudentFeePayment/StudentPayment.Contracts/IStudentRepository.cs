@@ -11,5 +11,7 @@ namespace StudentPayment.Contracts
     public interface IStudentRepository
     {
        Task<IEnumerable<Student>> GetAllStudentsAsync();
+       Task<Student> GetStudentByIdAsync(int id);
+       Student UpdateStudentById(Student student);
     }
 }

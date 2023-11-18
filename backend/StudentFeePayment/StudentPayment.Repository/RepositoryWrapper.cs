@@ -27,9 +27,9 @@ namespace StudentPayment.Repository
             }
         }
 
-        public void Save()
+        public async Task SaveAsync()
         {
-            _dbContext.SaveChanges();
+           await _dbContext.SaveChangesAsync();
         }
     }
 }

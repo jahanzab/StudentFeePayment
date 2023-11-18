@@ -15,13 +15,17 @@ namespace StudentFeePayment.Entities.Models.Domain
         public int Id { get; set; }
 
         [Required(ErrorMessage = "FirstName is required.")]
-        [MaxLength(50)]
+        [StringLength(50, MinimumLength = 2)]
         public string FirstName { get; set; }
 
         [ConcurrencyCheck]
-        [Required(ErrorMessage = "LastName is required.")]
-        [MaxLength(50)]
-        public string LastName { get; set; }
+        [Required]
+        [StringLength(50, MinimumLength = 2)]
+        public required string LastName { get; set; }
+
+        [Required]
+        [StringLength(20, MinimumLength = 5)]
+        public string StudentNumber { get; set; }
 
         [NotMapped]
         public string FullName => $"{FirstName} {LastName}";
@@ -42,6 +46,13 @@ namespace StudentFeePayment.Entities.Models.Domain
         [Required(ErrorMessage = "Date of birth is required.")]
         [DataType(DataType.Date)]
         public DateTime DOB { get; set; }
+
+        [Required(ErrorMessage = "Student Grade is required.")]
+        [MaxLength(50)]
+        public string Grade { get; set; }
+
+        [NotMapped]
+        public DateTime CreatedDate { get; set; }
 
 
     }
