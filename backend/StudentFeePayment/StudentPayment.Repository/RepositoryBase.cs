@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using StudentFeePayment.Entities;
 using StudentPayment.Contracts;
 using System;
@@ -23,8 +24,28 @@ namespace StudentPayment.Repository
         }
 
         public IQueryable<T> FindAll() => applicationDbContext.Set<T>().AsNoTracking();
+        public IQueryable<T> FindAll(params Expression<Func<T, object>>[] includes)
+        {
+            var query = FindAll();
+            if (includes != null)
+            {
+                query = includes.Aggregate(query,
+                          (current, include) => current.Include(include));
+            }
+            return query;
+        }
         public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression) =>
             applicationDbContext.Set<T>().Where(expression).AsNoTracking();
+        public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression, params Expression<Func<T, object>>[] includes)
+        {
+            var query = FindByCondition(expression);
+            if (includes != null)
+            {
+                query = includes.Aggregate(query,
+                          (current, include) => current.Include(include));
+            }
+            return query;
+        }
         public void Create(T entity) => applicationDbContext.Set<T>().Add(entity);
         public void Update(T entity) => applicationDbContext.Set<T>().Update(entity);
         public void Delete(T entity) => applicationDbContext.Set<T>().Remove(entity);

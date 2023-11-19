@@ -28,7 +28,7 @@ namespace StudentFeePayment.API.Controllers
         /// <returns></returns>
         [EnableCors("DefaultPolicy")]
         [HttpGet]
-        public async Task<IActionResult> GetAlStudents()
+        public async Task<IActionResult> GetAllStudents()
         {
             var studentsResult = _mapper.Map<IEnumerable<StudentDto>>(await _repository.Student.GetAllStudentsAsync());
             return Ok(studentsResult);

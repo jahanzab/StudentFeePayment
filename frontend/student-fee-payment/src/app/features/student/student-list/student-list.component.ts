@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { StudentService } from '../services/student.service';
 import { Student } from '../models/student.model';
 import { BehaviorSubject, Observable, Subscription, tap } from 'rxjs';
@@ -8,9 +8,7 @@ import { BehaviorSubject, Observable, Subscription, tap } from 'rxjs';
   templateUrl: './student-list.component.html',
   styleUrls: ['./student-list.component.css']
 })
-export class StudentListComponent implements OnInit {
-  router: any;
-
+export class StudentListComponent implements OnInit, OnDestroy {
 
   constructor(private studentService: StudentService){}
 
@@ -39,6 +37,11 @@ export class StudentListComponent implements OnInit {
       });
      }
     }
+  }
+
+  ngOnDestroy(): void {
+    this.deleteStudent?.unsubscribe();
+    this.students.unsubscribe();
   }
 
 }

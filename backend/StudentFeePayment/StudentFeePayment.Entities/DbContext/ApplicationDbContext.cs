@@ -15,6 +15,7 @@ namespace StudentFeePayment.Entities
             :base(options) { }
 
         public DbSet<Student> Students { get; set; }
+        public DbSet<FeePayment> FeePayments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -50,10 +51,12 @@ namespace StudentFeePayment.Entities
             {
                 // Set Shadow properties values
                 entityEntry.Property("UpdatedDate").CurrentValue = DateTime.Now;
+                entityEntry.Property("UpdatedBy").CurrentValue = "system user";
 
                 if (entityEntry.State == EntityState.Added)
                 {
                     entityEntry.Property("CreatedDate").CurrentValue = DateTime.Now;
+                    entityEntry.Property("CreatedBy").CurrentValue = "system user";
                 }
             }
 

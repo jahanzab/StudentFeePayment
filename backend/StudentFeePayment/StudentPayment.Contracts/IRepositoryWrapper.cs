@@ -9,6 +9,7 @@ namespace StudentPayment.Contracts
     public interface IRepositoryWrapper
     {
         IStudentRepository Student { get; }
+        IFeePaymentRepository FeePayment { get; }
         Task SaveAsync();
     }
 }

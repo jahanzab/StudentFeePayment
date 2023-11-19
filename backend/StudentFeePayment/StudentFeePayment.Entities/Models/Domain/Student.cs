@@ -21,7 +21,7 @@ namespace StudentFeePayment.Entities.Models.Domain
         [ConcurrencyCheck]
         [Required]
         [StringLength(50, MinimumLength = 2)]
-        public required string LastName { get; set; }
+        public string LastName { get; set; }
 
         [Required]
         [StringLength(20, MinimumLength = 5)]
@@ -53,7 +53,5 @@ namespace StudentFeePayment.Entities.Models.Domain
 
         [NotMapped]
         public DateTime CreatedDate { get; set; }
-
-
     }
 }

@@ -1,0 +1,76 @@
+<div class="container-xl px-4 mt-4">
+    <div class="row d-flex align-items-center justify-content-center">
+        <div class="col-xl-8">
+            <div class="card mb-4">
+              <div class="card-header">Fee Payment Details</div>
+            
+                <ng-container *ngIf="feePayment; else notFound">
+                  <div class="card-body">
+                    <form #form="ngForm" (ngSubmit)="OnFormSubmit()">
+                        <div class="row gx-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="studentName">Student Name</label>
+                                <input class="form-control" id="studentName" disabled required type="text" name="studentName"
+                                  maxlength="50" minlength="2"
+                                value="{{feePayment.student.fullName}}">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="amount">Amount</label>
+                                <div>
+                                    <span style="position: absolute; margin-left: 3px; margin-top: 7px;">$</span>
+                                    <input class="form-control" id="amount" disabled type="text" name="amount"
+                                    value="{{feePayment.feeAmount}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="small mb-1" for="studentNumber">Student #</label>
+                            <input class="form-control" id="studentNumber" disabled type="text" name="studentNumber"
+                            value="{{feePayment.student.studentNumber}}">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="small mb-1" for="paid">Fee Paid</label>
+                            <input class="form-control" id="paid" type="text" name="paid" disabled
+                            value="{{feePayment.isPaid == true ? 'Yes' : 'No'}}">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="small mb-1" for="paidDate">Payment Date</label>
+                            <input class="form-control" id="paidDate" type="date" name="paidDate" disabled
+                            value="{{feePayment.paidDate | date: 'yyyy-MM-dd'}}">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="small mb-1" for="feeYear">Fee for Year</label>
+                            <input class="form-control" id="feeYear" type="text" name="feeYear" disabled
+                            value="{{feePayment.feeYear}}">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="small mb-1" for="remarks">Remarks</label>
+                            <textarea class="form-control" id="remarks" maxlength="200" type="textarea" name="remarks"
+                            [(ngModel)]="feePayment.remarks"></textarea>
+                            <div *ngIf="errors">
+                                <ul>
+                                    <li *ngFor="let error of errors['Remarks']">
+                                        <span class="error text-danger"> {{error}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary" type="submit">Save changes</button>
+                    </form>
+                </div>
+            </ng-container>
+            <ng-template #notFound>
+                <div class="alert alert-dark" role="alert">
+                   Student not found!
+                </div>
+            </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

@@ -16,6 +16,16 @@ namespace StudentFeePayment.API.Mapper
 
             CreateMap<CreateUpdateStudentDto, Student>();
             CreateMap<Student, CreateUpdateStudentDto>();
+
+            CreateMap<FeePaymentDto, FeePayment>();
+            CreateMap<FeePayment, FeePaymentDto>();
+
+            CreateMap<FeePaymentDetailsDto, FeePayment>();
+            CreateMap<FeePayment, FeePaymentDetailsDto>();
+
+            CreateMap<FeePaymentCreateDto, FeePayment>()
+                .ForPath(dest => dest.Student.Id, opts => opts.MapFrom(src => src.StudentId));
+            //CreateMap<FeePayment, FeePaymentCreateDto>();
         }
     }
 }

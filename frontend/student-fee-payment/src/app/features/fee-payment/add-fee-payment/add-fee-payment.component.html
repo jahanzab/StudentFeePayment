@@ -1,0 +1,117 @@
+<div class="container-xl px-4 mt-4">
+    <div class="row d-flex align-items-center justify-content-center">
+        <div class="col-xl-8">
+            <div class="card mb-4">
+              <div class="card-header">Add Fee Payment</div>
+            
+                  <div class="card-body">
+                    <form #form="ngForm" (ngSubmit)="OnFormSubmit()">
+                        <div class="row gx-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="small mb-1">Student</label>
+                                <ng-container *ngIf="students$ | async as students">
+                                    <select class="form-control" [(ngModel)]="feePayment.studentId" name="students" id="students">
+                                        <option *ngFor="let student of students" [value]="student.id">
+                                            {{student.fullName}}
+                                        </option>
+                                    </select>
+                
+                                </ng-container>
+                                <div *ngIf="errors">
+                                    <ul>
+                                        <li  *ngFor="let error of errors['StudentId']">
+                                            <span class="error text-danger"> {{error}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="amount">Amount</label>
+                                <div>
+                                    <span style="position: absolute; margin-left: 3px; margin-top: 7px;">$</span>
+                                    <input class="form-control" id="amount" type="number" name="amount" placeholder="0.00"
+                                    required name="price" min="0.00" value="0.00" step="0.01"
+                                    [(ngModel)]="feePayment.feeAmount">
+                                </div>
+                                <div *ngIf="errors">
+                                    <ul >
+                                        <li *ngFor="let error of errors['LastName']">
+                                            <span class="error text-danger"> {{error}}</span>
+                                        </li>
+                                    </ul>
+                                    <ul >
+                                        <li *ngFor="let error of errors['$.feeAmount']">
+                                            <span class="error text-danger">Please enter amount in valid format.</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">                            
+                            <input class="form-check-input" type="checkbox" value="" id="paid" name="paid"
+                            [(ngModel)] = "feePayment.isPaid">
+                            <label class="small mb-1 ms-2" for="paid">Fee Paid?</label>
+                            <div *ngIf="errors">
+                                <ul>
+                                    <li *ngFor="let error of errors['Paid']">
+                                        <span class="error text-danger"> {{error}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="small mb-1" for="paidDate">Payment Date</label>
+                            <input class="form-control" id="paidDate" type="date" name="paidDate" placeholder="Payment Date"
+                            value="{{feePayment.paidDate}}"
+                            [ngModel]="feePayment.paidDate | date: 'yyyy-MM-dd'"
+                            (ngModelChange)="feePayment.paidDate = $event">
+                            <div *ngIf="errors">
+                                <ul>
+                                    <li  *ngFor="let error of errors['PaidDate']">
+                                        <span class="error text-danger"> {{error}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="small mb-1" for="feeYear">Fee Year</label>
+                            <input class="form-control" id="feeYear" type="text" name="feeYear" placeholder="Enter the year for fee payment"
+                            min="0.00" value="0.00" step="0.01"
+                            [(ngModel)]="feePayment.feeYear">
+                            <div *ngIf="errors">
+                                <ul>
+                                    <li *ngFor="let error of errors['FeeYear']">
+                                        <span class="error text-danger"> {{error}}</span>
+                                    </li>
+                                </ul>
+                                <ul >
+                                    <li *ngFor="let error of errors['$.feeYear']">
+                                        <span class="error text-danger">Please enter Fee year in valid format.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="small mb-1" for="address">Remarks</label>
+                            <textarea maxlength="200" class="form-control" id="remarks" name="remarks" placeholder="Enter remarks"
+                            [(ngModel)]="feePayment.remarks"></textarea>
+                            <div *ngIf="errors">
+                                <ul>
+                                    <li *ngFor="let error of errors['Remarks']">
+                                        <span class="error text-danger"> {{error}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary" type="submit">Save changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

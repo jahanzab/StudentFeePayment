@@ -1,0 +1,50 @@
+<div class="container mt-5" *ngIf="fee_payments$ | async as payments">
+    <div class="row">
+        <div class="col-12 mb-3 mb-lg-5">
+            <div class="overflow-hidden card table-nowrap table-card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Fee Payment</h5>
+                    <div>
+                        <a [routerLink]="['/fee-payments/add']" class="btn btn-primary"><i class="bx bx-plus me-1"></i> Add New</a>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table mb-0">
+                        <thead class="small text-uppercase bg-body text-muted">
+                            <tr>
+                                <th>Student Name</th>
+                                <th>Amount</th>
+                                <th>Paid</th>
+                                <th>Paid Date</th>
+                                <th>Fee Year</th>
+                                <th class="text-end">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="align-middle" *ngFor="let payment of payments">
+                                <td>{{payment.student.fullName}}</td>
+                                <td>
+                                    <span style="position: absolute; margin-left: -7px;">$</span>
+                                    <span>{{payment.feeAmount}}</span>
+                                </td>
+                                <td>{{payment.isPaid == true ? 'Yes' : 'No'}}</td>                                
+                                <td><span>{{payment.paidDate | date: 'yyyy-MM-dd'}}</span></td>
+                                <td>{{payment.feeYear}}</td>
+                                <td class="text-end">
+                                    <div class="drodown">
+                                        <a data-bs-toggle="dropdown" href="#" class="btn p-1" aria-expanded="false">
+                                  <i class="fa fa-bars" aria-hidden="true"></i>
+                                </a>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <a [routerLink]="['/fee-payments/', payment.id]" class="dropdown-item">View Details</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

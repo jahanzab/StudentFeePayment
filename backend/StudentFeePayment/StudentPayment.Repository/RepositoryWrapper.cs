@@ -12,6 +12,7 @@ namespace StudentPayment.Repository
     {
         private readonly ApplicationDbContext _dbContext;
         private IStudentRepository _studentRepository;
+        private IFeePaymentRepository _feePaymentRepository;
 
         public RepositoryWrapper(ApplicationDbContext dbContext)
         {
@@ -24,6 +25,15 @@ namespace StudentPayment.Repository
             {
                 _studentRepository ??= new StudentRepository(_dbContext);
                 return _studentRepository;
+            }
+        }
+
+        public IFeePaymentRepository FeePayment
+        {
+            get
+            {
+                _feePaymentRepository ??= new FeePaymentRepository(_dbContext);
+                return _feePaymentRepository;
             }
         }
 

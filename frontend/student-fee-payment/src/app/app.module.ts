@@ -12,6 +12,9 @@ import { FormsModule } from '@angular/forms';
 import { SpinnerComponent } from './core/components/spinner/spinner.component';
 import { LoadingInterceptor } from './core/components/interceptors/loading';
 import { AddStudentComponent } from './features/student/add-student/add-student.component';
+import { FeePaymentListComponent } from './features/fee-payment/fee-payment-list/fee-payment-list.component';
+import { FeePaymentDetailsComponent } from './features/fee-payment/fee-payment-details/fee-payment-details.component';
+import { AddFeePaymentComponent } from './features/fee-payment/add-fee-payment/add-fee-payment.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { AddStudentComponent } from './features/student/add-student/add-student.
     StudentListComponent,
     EditStudentComponent,
     SpinnerComponent,
-    AddStudentComponent
+    AddStudentComponent,
+    FeePaymentListComponent,
+    FeePaymentDetailsComponent,
+    AddFeePaymentComponent
   ],
   imports: [
     BrowserModule,
