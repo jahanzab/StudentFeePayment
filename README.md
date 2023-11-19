@@ -49,6 +49,22 @@ Welcome to 'Student Fee Payment' portal. Where you can not only add, update and 
  ng serve --open
 ```
 
+## Views
+
+>![](https://github.com/jahanzab/StudentFeePayment/blob/main/images/home.png?raw=true)
+
+>![](https://github.com/jahanzab/StudentFeePayment/blob/main/images/student-list.png?raw=true)
+
+>![](https://github.com/jahanzab/StudentFeePayment/blob/main/images/student-new.png?raw=true)
+
+>![](https://github.com/jahanzab/StudentFeePayment/blob/main/images/student-edit.png?raw=true)
+
+>![](https://github.com/jahanzab/StudentFeePayment/blob/main/images/feepayment-list.png?raw=true)
+
+>![](https://github.com/jahanzab/StudentFeePayment/blob/main/images/feepayment-new.png?raw=true)
+
+>![](https://github.com/jahanzab/StudentFeePayment/blob/main/images/feepayment-details.png?raw=true)
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
