@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using StudentFeePayment.Entities.Models.Domain;
 using System;
@@ -20,6 +21,70 @@ namespace StudentFeePayment.Entities
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            //Seed sample data for Student entities
+
+            //Students
+            modelBuilder.Entity<Student>().HasData(new
+            {
+                Id = 1,
+                FirstName = "Jahnzab",
+                LastName = "Ashraf",
+                Email = "jahanzab@live.com",
+                Phone = "+92 334 6168078",
+                Address = "Islamabad, Pakistan",
+                DOB = new DateTime(),
+                StudentNumber = "00001",
+                Grade = "First",
+                CreatedDate = DateTime.Now,
+                UpdatedDate = DateTime.Now,
+                CreatedBy = "system user",
+                UpdatedBy = "system user"
+            }, new
+            {
+                Id = 2,
+                FirstName = "John",
+                LastName = "Doe",
+                Email = "john.doe@live.com",
+                Phone = "+1 (555) 555-1234",
+                Address = "NY, USA",
+                DOB = new DateTime(),
+                StudentNumber = "00002",
+                Grade = "Second",
+                CreatedDate = DateTime.Now,
+                UpdatedDate = DateTime.Now,
+                CreatedBy = "system user",
+                UpdatedBy = "system user"
+            });
+
+            //Fee Payments
+            modelBuilder.Entity<FeePayment>().HasData(new
+            {
+                Id = 1,
+                FeeAmount = 102.21M,
+                IsPaid = true,
+                PaidDate = DateTime.Now,
+                FeeYear = 2023,
+                Remarks = "Fee paid",
+                StudentId = 1,
+                CreatedDate = DateTime.Now,
+                UpdatedDate = DateTime.Now,
+                CreatedBy = "system user",
+                UpdatedBy = "system user"
+            }, new
+            {
+                Id = 2,
+                FeeAmount = 90.50M,
+                IsPaid = true,
+                PaidDate = DateTime.Now,
+                FeeYear = 2023,
+                Remarks = "Fee paid",
+                StudentId = 2,
+                CreatedDate = DateTime.Now,
+                UpdatedDate = DateTime.Now,
+                CreatedBy = "system user",
+                UpdatedBy = "system user"
+            });
 
             var allEntities = modelBuilder.Model.GetEntityTypes();
 

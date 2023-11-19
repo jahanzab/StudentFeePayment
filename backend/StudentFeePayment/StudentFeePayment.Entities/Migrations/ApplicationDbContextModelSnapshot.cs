@@ -69,6 +69,36 @@ namespace StudentFeePayment.Entities.Migrations
                     b.HasIndex("StudentId");
 
                     b.ToTable("FeePayment", "school");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedBy = "system user",
+                            CreatedDate = new DateTime(2023, 11, 19, 18, 5, 26, 322, DateTimeKind.Local).AddTicks(8632),
+                            FeeAmount = 102.21m,
+                            FeeYear = 2023,
+                            IsPaid = true,
+                            PaidDate = new DateTime(2023, 11, 19, 18, 5, 26, 322, DateTimeKind.Local).AddTicks(8631),
+                            Remarks = "Fee paid",
+                            StudentId = 1,
+                            UpdatedBy = "system user",
+                            UpdatedDate = new DateTime(2023, 11, 19, 18, 5, 26, 322, DateTimeKind.Local).AddTicks(8632)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedBy = "system user",
+                            CreatedDate = new DateTime(2023, 11, 19, 18, 5, 26, 322, DateTimeKind.Local).AddTicks(8634),
+                            FeeAmount = 90.50m,
+                            FeeYear = 2023,
+                            IsPaid = true,
+                            PaidDate = new DateTime(2023, 11, 19, 18, 5, 26, 322, DateTimeKind.Local).AddTicks(8634),
+                            Remarks = "Fee paid",
+                            StudentId = 2,
+                            UpdatedBy = "system user",
+                            UpdatedDate = new DateTime(2023, 11, 19, 18, 5, 26, 322, DateTimeKind.Local).AddTicks(8635)
+                        });
                 });
 
             modelBuilder.Entity("StudentFeePayment.Entities.Models.Domain.Student", b =>
@@ -136,6 +166,40 @@ namespace StudentFeePayment.Entities.Migrations
                         .IsUnique();
 
                     b.ToTable("Student", "school");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "Islamabad, Pakistan",
+                            CreatedBy = "system user",
+                            CreatedDate = new DateTime(2023, 11, 19, 18, 5, 26, 322, DateTimeKind.Local).AddTicks(8581),
+                            DOB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "jahanzab@live.com",
+                            FirstName = "Jahnzab",
+                            Grade = "First",
+                            LastName = "Ashraf",
+                            Phone = "+92 334 6168078",
+                            StudentNumber = "00001",
+                            UpdatedBy = "system user",
+                            UpdatedDate = new DateTime(2023, 11, 19, 18, 5, 26, 322, DateTimeKind.Local).AddTicks(8592)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Address = "NY, USA",
+                            CreatedBy = "system user",
+                            CreatedDate = new DateTime(2023, 11, 19, 18, 5, 26, 322, DateTimeKind.Local).AddTicks(8595),
+                            DOB = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "john.doe@live.com",
+                            FirstName = "John",
+                            Grade = "Second",
+                            LastName = "Doe",
+                            Phone = "+1 (555) 555-1234",
+                            StudentNumber = "00002",
+                            UpdatedBy = "system user",
+                            UpdatedDate = new DateTime(2023, 11, 19, 18, 5, 26, 322, DateTimeKind.Local).AddTicks(8595)
+                        });
                 });
 
             modelBuilder.Entity("StudentFeePayment.Entities.Models.Domain.FeePayment", b =>
