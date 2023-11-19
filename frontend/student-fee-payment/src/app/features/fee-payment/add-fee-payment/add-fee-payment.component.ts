@@ -5,6 +5,7 @@ import { FeePaymentService } from '../services/fee-payment.service';
 import { Router } from '@angular/router';
 import { Student } from '../../student/models/student.model';
 import { StudentService } from '../../student/services/student.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-fee-payment',
@@ -19,7 +20,7 @@ export class AddFeePaymentComponent implements OnInit, OnDestroy {
   students$?: Observable<Student[]>;
   
     constructor(private feePaymentService: FeePaymentService, private studentService: StudentService,
-       private router: Router){
+       private router: Router, private toastr: ToastrService){
       this.feePayment = {
         feeAmount : '',
         isPaid : false,
@@ -36,14 +37,17 @@ export class AddFeePaymentComponent implements OnInit, OnDestroy {
   OnFormSubmit() {
     this.feePaymentSubscription = this.feePaymentService.addFeePayment(this.feePayment).subscribe({
       next: (res) =>{
+        this.toastr.success('Fee Payment added successfully.');
         this.router.navigateByUrl('/fee-payments');
       },
       error: (res)=>{
         if(res.error.errors){
           this.errors = res.error.errors;
+          this.toastr.error('Error(s).');
         }
         else if(res.error){
           this.errors = res.error;
+          this.toastr.error('Error(s).');
         }
       },
       complete: ()=>{

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,8 @@ import { AddStudentComponent } from './features/student/add-student/add-student.
 import { FeePaymentListComponent } from './features/fee-payment/fee-payment-list/fee-payment-list.component';
 import { FeePaymentDetailsComponent } from './features/fee-payment/fee-payment-details/fee-payment-details.component';
 import { AddFeePaymentComponent } from './features/fee-payment/add-fee-payment/add-fee-payment.component';
+
+import { ToastrModule, provideToastr } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -33,12 +36,14 @@ import { AddFeePaymentComponent } from './features/fee-payment/add-fee-payment/a
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true
-    }
+    },
   ],
   bootstrap: [AppComponent]
 })

@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { Student } from '../models/student.model';
 import { StudentDetails } from '../models/student-details.model';
 import { StudentCreateUpdate } from '../models/student-create-update.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-student',
@@ -18,7 +19,7 @@ throw new Error('Method not implemented.');
 }
 
   constructor(private studentService: StudentService, private route: ActivatedRoute,
-    private router: Router){}
+    private router: Router, private toastr: ToastrService){}
 
   id:string | null = null;
   paramsSubscription?: Subscription;
@@ -62,14 +63,17 @@ throw new Error('Method not implemented.');
     {
       this.editStudent = this.studentService.updateStudentById(this.id, updateStudentRequest).subscribe({
         next: (res) =>{
+          this.toastr.success('Student updated successfully.');
           this.router.navigateByUrl('/students')
         },
         error: (res) =>{
           if(res.error.errors){
             this.errors = res.error.errors;
+            this.toastr.error('Error(s).');
           }
           else if(res.error){
             this.errors = res.error;
+            this.toastr.error('Error(s).');
           }
         }
       });

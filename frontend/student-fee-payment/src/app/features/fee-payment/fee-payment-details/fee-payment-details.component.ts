@@ -4,6 +4,7 @@ import { FeePaymentService } from '../services/fee-payment.service';
 import { Subscription } from 'rxjs';
 import { FeePaymentDetails } from '../models/fee-payment-details.model';
 import { FeePaymentUpdate } from '../models/fee-payment-update.model copy';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-fee-payment-details',
@@ -14,7 +15,7 @@ export class FeePaymentDetailsComponent implements OnInit, OnDestroy {
 
   
   constructor(private feePaymentService: FeePaymentService, private route: ActivatedRoute,
-    private router: Router){}
+    private router: Router, private toastr: ToastrService){}
 
   id:string | null = null;
   paramsSubscription?: Subscription;
@@ -52,13 +53,17 @@ export class FeePaymentDetailsComponent implements OnInit, OnDestroy {
       this.editFeePayment = this.feePaymentService.updateFeePaymentById(this.id, updateFeePaymentRequest).subscribe({
         next: (res) =>{
           this.router.navigateByUrl('/fee-payments')
+          this.toastr.success('Updated successfully!')
         },
         error: (res) =>{
           if(res.error.errors){
             this.errors = res.error.errors;
+            this.toastr.error('Error(s).');
           }
           else if(res.error){
+            this.toastr.error(res.error)
             this.errors = res.error;
+            this.toastr.error('Error(s).');
           }
         }
       });
