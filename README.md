@@ -35,6 +35,13 @@ Welcome to 'Student Fee Payment' portal. Where you can not only add, update and 
 1. Run the sql [script](https://github.com/jahanzab/StudentFeePayment/blob/main/fee-payment.sql) in your MSSQL instance
 2. Run the backend project using Visual Studio
 3. Note down the url API is running at (probably will be running at `https://localhost:7068`)
+4. Also please make sure that connection string in `appsettings.Development.json` file points to your local SQL server instance
+
+```javascript
+   "ConnectionStrings": {
+    "ConnectionString": "Server=localhost;Database=SchoolDB;TrustServerCertificate=True;Trusted_Connection=True"
+  }
+```
 
 #### FrontEnd:
 1. Open the project in your editor
